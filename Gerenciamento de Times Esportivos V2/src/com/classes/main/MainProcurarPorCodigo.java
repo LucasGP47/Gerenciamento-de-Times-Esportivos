@@ -9,7 +9,7 @@ public class MainProcurarPorCodigo {
 			
 		// Teste Procurar por Codigo
 		JogadorBO marcaBO = new JogadorBO();
-		Jogador marca = new Jogador(1,"");
+		Jogador marca = new Jogador("",1);
 		marca = marcaBO.procurarPorCodigo(marca);
 		System.out.println(marca);
 		

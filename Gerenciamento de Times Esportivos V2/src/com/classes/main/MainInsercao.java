@@ -6,23 +6,26 @@ import com.classes.DTO.Jogador;
 public class MainInsercao {
 	public static void main(String[] args) {
 		// Teste Inserir
-		JogadorBO marcaBO = new JogadorBO();
-		Jogador marca = new Jogador("Roberto Carlos");
-		if (marcaBO.inserir(marca))
+		
+		JogadorBO playerBO = new JogadorBO();
+		
+		Jogador player = new Jogador("Neymar");
+		
+		if (playerBO.inserir(player))
 			System.out.println("Inserido com Sucesso");
 		else
 			System.out.println("Erro ao Inserir");
 		
-		marca = new Jogador("Playstation 47");
+		player = new Jogador("Menino ney");
 		
-		if (marcaBO.inserir(marca))
+		if (playerBO.inserir(player))
 			System.out.println("Inserido com Sucesso");
 		else
 			System.out.println("Erro ao Inserir");
 		
-		marca = new Jogador("XBOX");
+		player = new Jogador("XBOX");
 		
-		if (marcaBO.inserir(marca))
+		if (playerBO.inserir(player))
 			System.out.println("Inserido com Sucesso");
 		else
 			System.out.println("Erro ao Inserir");

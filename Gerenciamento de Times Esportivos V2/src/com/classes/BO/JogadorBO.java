@@ -6,45 +6,45 @@ import java.util.List;
 
 public class JogadorBO {
 
-    public boolean inserir(Jogador marca){
+    public boolean inserir(Jogador nome){
     	
-        if (existe(marca) != true) {
-            JogadorDAO marcasDAO = new JogadorDAO();
-            return marcasDAO.inserir(marca);
+        if (existe(nome) != true) {
+            JogadorDAO nomesDAO = new JogadorDAO();
+            return nomesDAO.inserir(nome);
         }
         								
         return false;
     }
     
-    public boolean alterar(Jogador marca){
+    public boolean alterar(Jogador nome){
     	
-        JogadorDAO marcasDAO = new JogadorDAO();
-        return marcasDAO.alterar(marca);
+        JogadorDAO nomesDAO = new JogadorDAO();
+        return nomesDAO.alterar(nome);
         
     }
     
-    public boolean excluir(Jogador marca){
-        JogadorDAO marcasDAO = new JogadorDAO();
-        return marcasDAO.excluir(marca);
+    public boolean excluir(Jogador nome){
+        JogadorDAO nomesDAO = new JogadorDAO();
+        return nomesDAO.excluir(nome);
     }
     
-    public Jogador procurarPorCodigo(Jogador marca){
-        JogadorDAO marcasDAO = new JogadorDAO();
-        return marcasDAO.procurarPorCodigo(marca);
+    public Jogador procurarPorCodigo(Jogador nome){
+        JogadorDAO nomesDAO = new JogadorDAO();
+        return nomesDAO.procurarPorNome(nome);
     }
     
-    public Jogador procurarPorDescricao(Jogador marca){
-        JogadorDAO marcasDAO = new JogadorDAO();
-        return marcasDAO.procurarPorDescricao(marca);
+    public Jogador procurarPorDescricao(Jogador nome){
+        JogadorDAO nomesDAO = new JogadorDAO();
+        return nomesDAO.procurarPorValor(nome);
     }
     
-    public boolean existe(Jogador marca){
-        JogadorDAO marcasDAO = new JogadorDAO();
-        return marcasDAO.existe(marca);
+    public boolean existe(Jogador nome){
+        JogadorDAO nomesDAO = new JogadorDAO();
+        return nomesDAO.existe(nome);
     }
     
     public List<Jogador> pesquisarTodos(){
-        JogadorDAO marcasDAO = new JogadorDAO();
-        return marcasDAO.pesquisarTodos();
+        JogadorDAO nomesDAO = new JogadorDAO();
+        return nomesDAO.pesquisarTodos();
     }
 }

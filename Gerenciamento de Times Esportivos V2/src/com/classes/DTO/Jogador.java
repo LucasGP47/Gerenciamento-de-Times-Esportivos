@@ -1,40 +1,45 @@
 package com.classes.DTO;
 
 public class Jogador {
-	private int codigo;
-	private String descricao;
+	
+	private String nome;
+	private int ValorDeMercado;
+	
 	public Jogador() {
 
 	}
-	public Jogador(int codigo) {
-		setCodigo(codigo);
+	
+	public Jogador(String Nome) {
+		
+		setNome(nome);
 	}
-	public Jogador(String descricao) {
-		setDescricao(descricao);
+	public Jogador(int valor) {
+		
+		setValor(valor);
 	}
-	public Jogador(int codigo, String descricao) {
-		setCodigo(codigo);
-		setDescricao(descricao);
+	public Jogador(String nome, int valor) {
+		setNome(nome);
+		setValor(valor);
 	}
-	public int getCodigo() {
-		return codigo;
+	public String getNome() {
+		return nome;
 	}
-	public void setCodigo(int codigo) {
-		this.codigo = codigo;
+	public void setNome(String string) {
+		this.nome = string;
 	}
-	public String getDescricao() {
-		return descricao;
+	public int getValor() {
+		return ValorDeMercado;
 	}
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
+	public void setValor(int ValorDeMercado) {
+		this.ValorDeMercado = ValorDeMercado;
 	}
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("Marca [codigo=");
-		builder.append(codigo);
-		builder.append(", descricao=");
-		builder.append(descricao);
+		builder.append("Marca [nome=");
+		builder.append(nome);
+		builder.append(", valor=");
+		builder.append(ValorDeMercado);
 		builder.append("]");
 		return builder.toString();
 	}

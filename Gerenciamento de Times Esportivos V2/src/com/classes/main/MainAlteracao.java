@@ -8,7 +8,7 @@ public class MainAlteracao {
 	public static void main(String[] args) {
 			
 		JogadorBO marcaBO = new JogadorBO();
-		Jogador marca = new Jogador(3,"Neymar");
+		Jogador marca = new Jogador("Neymar",3);
 		marcaBO.alterar(marca);
 		marca = marcaBO.procurarPorCodigo(marca);
 		System.out.println(marca);
