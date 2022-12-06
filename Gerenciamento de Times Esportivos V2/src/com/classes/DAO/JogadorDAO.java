@@ -11,29 +11,37 @@ import conexao.Conexao;
 
 public class JogadorDAO {
 
-    final String NOMEDATABELA = "marca";
+    final String NOMEDATABELA = "jogador";
+    
     public boolean inserir(Jogador nome) {
         try {
             Connection conn = Conexao.conectar();
-            String sql = "INSERT INTO " + NOMEDATABELA + " (Valor) VALUES (?);";
+            String sql = "INSERT INTO " + NOMEDATABELA + " (NOME) VALUES (?);";
             PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setInt(1, nome.getValor());
+            ps.setString(1, nome.getNome());
+            System.out.println(ps.toString());
+          //  ps.setFloat(1, nome.getValorDeMercado());
+          //  ps.setFloat(1, nome.getSalario());
             ps.executeUpdate();
             ps.close();
             conn.close();
             return true;
+            
         } catch (Exception e) {
+        	
             e.printStackTrace();
             return false;
         }
     }
+    
     public boolean alterar(Jogador nome) {
         try {
             Connection conn = Conexao.conectar();
-            String sql = "UPDATE " + NOMEDATABELA + " SET Valor = ? WHERE Nome = ?;";
+            String sql = "UPDATE " + NOMEDATABELA + " SET nome = ? WHERE nome = ?;";
             PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setInt(1, nome.getValor());
-            ps.setString(2, nome.getNome());
+            ps.setString(1, nome.getNome());
+            ps.setFloat(2, nome.getValorDeMercado());
+            ps.setFloat(3, nome.getSalario());
             ps.executeUpdate();
             ps.close();
             conn.close();
@@ -46,7 +54,7 @@ public class JogadorDAO {
     public boolean excluir(Jogador marca) {
         try {
             Connection conn = Conexao.conectar();
-            String sql = "DELETE FROM " + NOMEDATABELA + " WHERE Nome = ?;";
+            String sql = "DELETE FROM " + NOMEDATABELA + " WHERE nome = ?;";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, marca.getNome());
             ps.executeUpdate();
@@ -58,17 +66,17 @@ public class JogadorDAO {
              return false;
         }
     }
-    public Jogador procurarPorNome(Jogador marca) {
+    public Jogador procurarPorNome(Jogador nome) {
         try {
             Connection conn = Conexao.conectar();
             String sql = "SELECT * FROM " + NOMEDATABELA + " WHERE nome = ?;";
             PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setString(1, marca.getNome());
+            ps.setString(1, nome.getNome());
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 Jogador obj = new Jogador();
                 obj.setNome(rs.getString(1));
-                obj.setValor(rs.getInt(2));
+                obj.setValorDeMercado(rs.getInt(2));
                 ps.close();
                 rs.close();
                 conn.close();
@@ -84,17 +92,17 @@ public class JogadorDAO {
              return null;
         }
     }
-    public Jogador procurarPorValor(Jogador marca) {
+    public Jogador procurarPorValor(Jogador nome) {
         try {
             Connection conn = Conexao.conectar();
-            String sql = "SELECT * FROM " + NOMEDATABELA + " WHERE Valor = ?;";
+            String sql = "SELECT * FROM " + NOMEDATABELA + " WHERE nome = ?;";
             PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setInt(1, marca.getValor());
+            ps.setFloat(1, nome.getValorDeMercado());
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 Jogador obj = new Jogador();
                 obj.setNome(rs.getString(1));
-                obj.setValor(rs.getInt(2));
+                obj.setValorDeMercado(rs.getInt(2));
                 ps.close();
                 rs.close();
                 conn.close();
@@ -109,12 +117,12 @@ public class JogadorDAO {
             return null;
         }
     }
-    public boolean existe(Jogador marca) {
+    public boolean existe(Jogador nome) {
         try {
             Connection conn = Conexao.conectar();
             String sql = "SELECT * FROM " + NOMEDATABELA + " WHERE Valor = ?;";
             PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setInt(1, marca.getValor());
+            ps.setFloat(1, nome.getValorDeMercado());
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 ps.close();
@@ -149,7 +157,7 @@ public class JogadorDAO {
             while (rs.next()) {
                 Jogador obj = new Jogador();
                 obj.setNome(rs.getString(1));
-                obj.setValor(rs.getInt(2));
+                obj.setValorDeMercado(rs.getInt(2));
                 listObj.add(obj);
             }
             return listObj;
@@ -159,4 +167,6 @@ public class JogadorDAO {
             return null;
         }
     }
+    
+    
 }

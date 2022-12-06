@@ -8,43 +8,41 @@ public class JogadorBO {
 
     public boolean inserir(Jogador nome){
     	
-        if (existe(nome) != true) {
-            JogadorDAO nomesDAO = new JogadorDAO();
-            return nomesDAO.inserir(nome);
-        }
+        JogadorDAO nomeDAO = new JogadorDAO();
+        
+        return nomeDAO.inserir(nome);
         								
-        return false;
     }
     
     public boolean alterar(Jogador nome){
     	
-        JogadorDAO nomesDAO = new JogadorDAO();
-        return nomesDAO.alterar(nome);
+        JogadorDAO nomeDAO = new JogadorDAO();
+        return nomeDAO.alterar(nome);
         
     }
     
     public boolean excluir(Jogador nome){
-        JogadorDAO nomesDAO = new JogadorDAO();
-        return nomesDAO.excluir(nome);
+        JogadorDAO nomeDAO = new JogadorDAO();
+        return nomeDAO.excluir(nome);
     }
     
     public Jogador procurarPorCodigo(Jogador nome){
-        JogadorDAO nomesDAO = new JogadorDAO();
-        return nomesDAO.procurarPorNome(nome);
+        JogadorDAO nomeDAO = new JogadorDAO();
+        return nomeDAO.procurarPorNome(nome);
     }
     
     public Jogador procurarPorDescricao(Jogador nome){
-        JogadorDAO nomesDAO = new JogadorDAO();
-        return nomesDAO.procurarPorValor(nome);
+        JogadorDAO nomeDAO = new JogadorDAO();
+        return nomeDAO.procurarPorValor(nome);
     }
     
     public boolean existe(Jogador nome){
-        JogadorDAO nomesDAO = new JogadorDAO();
-        return nomesDAO.existe(nome);
+        JogadorDAO nomeDAO = new JogadorDAO();
+        return nomeDAO.existe(nome);
     }
     
     public List<Jogador> pesquisarTodos(){
-        JogadorDAO nomesDAO = new JogadorDAO();
-        return nomesDAO.pesquisarTodos();
+        JogadorDAO nomeDAO = new JogadorDAO();
+        return nomeDAO.pesquisarTodos();
     }
 }
