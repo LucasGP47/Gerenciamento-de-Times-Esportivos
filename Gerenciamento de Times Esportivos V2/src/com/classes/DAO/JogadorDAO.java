@@ -16,12 +16,11 @@ public class JogadorDAO {
     public boolean inserir(Jogador nome) {
         try {
             Connection conn = Conexao.conectar();
-            String sql = "INSERT INTO " + NOMEDATABELA + " (NOME) VALUES (?);";
+            String sql = "INSERT INTO " + NOMEDATABELA + " (Nome, ValorDeMercado, Salario) VALUES (?, ?, ?);";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, nome.getNome());
-            System.out.println(ps.toString());
-          //  ps.setFloat(1, nome.getValorDeMercado());
-          //  ps.setFloat(1, nome.getSalario());
+            ps.setFloat(2, nome.getValorDeMercado());
+            ps.setFloat(3, nome.getSalario());
             ps.executeUpdate();
             ps.close();
             conn.close();
@@ -37,7 +36,7 @@ public class JogadorDAO {
     public boolean alterar(Jogador nome) {
         try {
             Connection conn = Conexao.conectar();
-            String sql = "UPDATE " + NOMEDATABELA + " SET nome = ? WHERE nome = ?;";
+            String sql = "UPDATE " + NOMEDATABELA + " SET nome = ?, ValorDeMercado = ?, Salario = ? WHERE ID = ?;";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, nome.getNome());
             ps.setFloat(2, nome.getValorDeMercado());
@@ -46,17 +45,19 @@ public class JogadorDAO {
             ps.close();
             conn.close();
             return true;
+            
         } catch (Exception e) {
         	 e.printStackTrace();
              return false;
         }
     }
-    public boolean excluir(Jogador marca) {
+    
+    public boolean excluir(Jogador nome) {
         try {
             Connection conn = Conexao.conectar();
             String sql = "DELETE FROM " + NOMEDATABELA + " WHERE nome = ?;";
             PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setString(1, marca.getNome());
+            ps.setString(1, nome.getNome());
             ps.executeUpdate();
             ps.close();
             conn.close();

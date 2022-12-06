@@ -9,7 +9,8 @@ public class MainInsercao {
 		
 		JogadorBO playerBO = new JogadorBO();
 		
-		Jogador player = new Jogador("Neymar");
+		Jogador player = new Jogador("Neymar", 200000000, 2000);
+				
 		
 		if (playerBO.inserir(player))
 			System.out.println("Inserido com Sucesso");

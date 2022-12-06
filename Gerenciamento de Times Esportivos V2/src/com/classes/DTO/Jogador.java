@@ -10,16 +10,7 @@ public class Jogador {
 
 	}
 	
-	public Jogador(String Nome) {
-		setNome(Nome);
-	}
-	public Jogador(float ValorDeMercado, float salario) {
-		setValorDeMercado(ValorDeMercado);
-		setSalario(salario);
-	}
-	
-	
-	public Jogador(String Nome, int ValorDeMercado) {
+	public Jogador(String Nome , float ValorDeMercado, float salario) {
 		setNome(Nome);
 		setValorDeMercado(ValorDeMercado);
 		setSalario(salario);
