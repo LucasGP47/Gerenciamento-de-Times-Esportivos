@@ -1,53 +1,92 @@
 package com.classes.DTO;
 
-public class Jogador {
+public class Jogador extends Clube{
 	
+	private int ID;
 	private String Nome;
-	private float ValorDeMercado;
-	private float salario;
+	private double ValorDeMercado;
+	private double salario;
 	
 	public Jogador() {
 
 	}
 	
-	public Jogador(String Nome , float ValorDeMercado, float salario) {
+	public Jogador(double ValorDeMercado) {
+		
+		setValorDeMercado(ValorDeMercado);
+		
+	}
+	
+	public Jogador(int ID, String Nome) {
+		setID(ID);
+		setNome(Nome);
+	}
+	
+	public Jogador(String Nome , double ValorDeMercado, double salario) {
+		
 		setNome(Nome);
 		setValorDeMercado(ValorDeMercado);
 		setSalario(salario);
 	}
 	
+	public Jogador(int ID, String Nome , double ValorDeMercado, double salario) {
+		
+	    setID(ID);
+		setNome(Nome);
+		setValorDeMercado(ValorDeMercado);
+		setSalario(salario);
+	}
+	
+	public Jogador(int ID) {
+		setID(ID);
+	}
+	
+	public Jogador(String Nome) {
+		setNome(Nome);
+	}
+	
+	public int getID() {
+		return ID;
+	}
+
+	public void setID(int ID) {
+		this.ID = ID;
+	}
+
 	public String getNome() {
 		return Nome;
 	}
 	
-	public void setNome(String nome) {
-		this.Nome = nome;
+	public void setNome(String Nome) {
+		this.Nome = Nome;
 	}
 	
-	public float getValorDeMercado() {
+	public double getValorDeMercado() {
 		return ValorDeMercado;
 	}
 	
-	public void setValorDeMercado(float ValorDeMercado) {
+	public void setValorDeMercado(double ValorDeMercado) {
 		this.ValorDeMercado = ValorDeMercado;
 	}
 	
-	public float getSalario() {
+	public double getSalario() {
 		return salario;
 	}
 
-	public void setSalario(float salario) {
+	public void setSalario(double salario) {
 		this.salario = salario;
+	}
+	
+	public double getValor() {
+		
+		return ValorDeMercado;
+		
 	}
 
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("Jogador [nome=");
-		builder.append(Nome);
-		builder.append(", ValorDeMercado=");
-		builder.append(ValorDeMercado);
-		builder.append("]");
+		builder.append("Jogador " + Nome + " [Valor de mercado = " + ValorDeMercado + ", Salário= " + salario + "]");
 		return builder.toString();
 	}
 }

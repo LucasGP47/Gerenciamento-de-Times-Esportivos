@@ -26,12 +26,12 @@ public class JogadorBO {
         return nomeDAO.excluir(nome);
     }
     
-    public Jogador procurarPorCodigo(Jogador nome){
+    public Jogador procurarPorJogador(Jogador nome){
         JogadorDAO nomeDAO = new JogadorDAO();
         return nomeDAO.procurarPorNome(nome);
     }
     
-    public Jogador procurarPorDescricao(Jogador nome){
+    public Jogador procurarPorValor(Jogador nome){
         JogadorDAO nomeDAO = new JogadorDAO();
         return nomeDAO.procurarPorValor(nome);
     }

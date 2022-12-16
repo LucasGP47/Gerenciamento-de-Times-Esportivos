@@ -19,8 +19,8 @@ public class JogadorDAO {
             String sql = "INSERT INTO " + NOMEDATABELA + " (Nome, ValorDeMercado, Salario) VALUES (?, ?, ?);";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, nome.getNome());
-            ps.setFloat(2, nome.getValorDeMercado());
-            ps.setFloat(3, nome.getSalario());
+            ps.setDouble(2, nome.getValorDeMercado());
+            ps.setDouble(3, nome.getSalario());
             ps.executeUpdate();
             ps.close();
             conn.close();
@@ -36,11 +36,12 @@ public class JogadorDAO {
     public boolean alterar(Jogador nome) {
         try {
             Connection conn = Conexao.conectar();
-            String sql = "UPDATE " + NOMEDATABELA + " SET nome = ?, ValorDeMercado = ?, Salario = ? WHERE ID = ?;";
+            String sql = "UPDATE " + NOMEDATABELA + " SET Nome = ?, ValorDeMercado = ?, Salario = ? WHERE ID = ?;";
             PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(4, nome.getID());
             ps.setString(1, nome.getNome());
-            ps.setFloat(2, nome.getValorDeMercado());
-            ps.setFloat(3, nome.getSalario());
+            ps.setDouble(2, nome.getValorDeMercado());
+            ps.setDouble(3, nome.getSalario());
             ps.executeUpdate();
             ps.close();
             conn.close();
@@ -76,8 +77,9 @@ public class JogadorDAO {
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 Jogador obj = new Jogador();
-                obj.setNome(rs.getString(1));
-                obj.setValorDeMercado(rs.getInt(2));
+                obj.setNome(rs.getString(2));
+                obj.setValorDeMercado(rs.getDouble(3));
+                obj.setSalario(rs.getDouble(4));
                 ps.close();
                 rs.close();
                 conn.close();
@@ -96,14 +98,16 @@ public class JogadorDAO {
     public Jogador procurarPorValor(Jogador nome) {
         try {
             Connection conn = Conexao.conectar();
-            String sql = "SELECT * FROM " + NOMEDATABELA + " WHERE nome = ?;";
+            String sql = "SELECT * FROM " + NOMEDATABELA + " WHERE ValorDeMercado = ?;";
             PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setFloat(1, nome.getValorDeMercado());
+            ps.setDouble(1, nome.getValorDeMercado());
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 Jogador obj = new Jogador();
-                obj.setNome(rs.getString(1));
-                obj.setValorDeMercado(rs.getInt(2));
+                obj.setID(rs.getInt(1));
+                obj.setNome(rs.getString(2));
+                obj.setValorDeMercado(rs.getDouble(3));
+                obj.setSalario(rs.getDouble(4));
                 ps.close();
                 rs.close();
                 conn.close();
@@ -121,9 +125,9 @@ public class JogadorDAO {
     public boolean existe(Jogador nome) {
         try {
             Connection conn = Conexao.conectar();
-            String sql = "SELECT * FROM " + NOMEDATABELA + " WHERE Valor = ?;";
+            String sql = "SELECT * FROM " + NOMEDATABELA + " WHERE Nome = ?;";
             PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setFloat(1, nome.getValorDeMercado());
+            ps.setString(1, nome.getNome());
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 ps.close();
@@ -132,8 +136,7 @@ public class JogadorDAO {
                 return true;
             }
         } catch (Exception e) {
-            //System.err.println("Erro: " + e.toString());
-            //e.printStackTrace();
+            
             return false;
         }
         return false;
@@ -147,8 +150,6 @@ public class JogadorDAO {
             List<Jogador> listObj = montarLista(rs);
             return listObj;
         } catch (Exception e) {
-            //System.err.println("Erro: " + e.toString());
-            //e.printStackTrace();
             return null;
         }
     }
@@ -157,14 +158,15 @@ public class JogadorDAO {
         try {
             while (rs.next()) {
                 Jogador obj = new Jogador();
-                obj.setNome(rs.getString(1));
-                obj.setValorDeMercado(rs.getInt(2));
+                obj.setID(1);
+                obj.setNome(rs.getString(2));
+                obj.setValorDeMercado(rs.getDouble(3));
+                obj.setSalario(rs.getDouble(4));
                 listObj.add(obj);
             }
             return listObj;
         } catch (Exception e) {
-            //System.err.println("Erro: " + e.toString());
-            //e.printStackTrace();
+           
             return null;
         }
     }

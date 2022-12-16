@@ -9,10 +9,12 @@ public class MainPesquisarTodos {
 
 	public static void main(String[] args) {
 		
-		// Teste Pesquisar Todos (Retorna a Lista de Marcas)
-		JogadorBO marcaBO = new JogadorBO();
+		JogadorBO playerBO = new JogadorBO();
+		
 		List<Jogador> lista = new ArrayList<Jogador>();
-		lista = marcaBO.pesquisarTodos();	
+		
+		lista = playerBO.pesquisarTodos();	
+		
 		for (Jogador marca : lista) {
 			System.out.println(marca.toString());
 		}
